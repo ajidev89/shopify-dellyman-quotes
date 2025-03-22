@@ -15,11 +15,11 @@ import {
 } from "@shopify/polaris";
 import { TitleBar, useAppBridge } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
+
 import axios from "axios";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
-
   const response = await admin.graphql(
     `#graphql
     {
@@ -80,6 +80,17 @@ export default function Index() {
     setWebhook(credentials.data.details.webhook_secret ?? "");
     setWebhookUrl(credentials.data.details.webhook_url ?? "");
   };
+
+  const createCarrierService = async () => {
+    fetch("/api/create-carrier", {
+      method: "POST",
+      body: JSON.stringify({}),
+    });
+  };
+
+  useEffect(() => {
+    createCarrierService();
+  }, []);
 
   useEffect(() => {
     fetchCredentials();

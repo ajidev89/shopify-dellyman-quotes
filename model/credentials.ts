@@ -15,6 +15,9 @@ const credentialsSchema = new Schema(
     webhook_url: {
       type: String,
     },
+    carrier_id: {
+      type: String,
+    },
   },
   {
     toJSON: {

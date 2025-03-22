@@ -24,6 +24,9 @@ const shopify = shopifyApp({
   ...(process.env.SHOP_CUSTOM_DOMAIN
     ? { customShopDomains: [process.env.SHOP_CUSTOM_DOMAIN] }
     : {}),
+    hooks: {
+
+    }
 });
 
 const mongodb = new MongoDB();
