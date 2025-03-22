@@ -28,45 +28,10 @@ export const action: ActionFunction = async ({ params, request }) => {
     }),
   });
 
-  // {
-  //   18:48:16 │                     remix │   ResponseCode: 100,
-  //   18:48:16 │                     remix │   ResponseMessage: 'Success',
-  //   18:48:16 │                     remix │   Companies: [
-  //   18:48:16 │                     remix │     {
-  //   18:48:16 │                     remix │       CompanyID: 643,
-  //   18:48:16 │                     remix │       Name: 'Delly Logistics Africa Ltd',
-  //   18:48:16 │                     remix │       TotalPrice: 1725,
-  //   18:48:16 │                     remix │       OriginalPrice: 1725,
-  //   18:48:16 │                     remix │       PayableAmount: 1725,
-  //   18:48:16 │                     remix │       SavedPrice: 0,
-  //   18:48:16 │                     remix │       SameDayPrice: 1725,
-  //   18:48:16 │                     remix │       DeductablePrice: 1725,
-  //   18:48:16 │                     remix │       AvgRating: 5,
-  //   18:48:16 │                     remix │       NumberOfOrders: 299,
-  //   18:48:16 │                     remix │       NumberOfRating: 3
-  //   18:48:16 │                     remix │     }
-  //   18:48:16 │                     remix │   ],
-
   const responseJson = await response.json();
 
   const company = responseJson.Companies[0];
   const currentDate = new Date().toISOString();
-
-  //   if (!response.ok) {
-  //     return json({ error: "Failed to fetch shipping rates" }, { status: 500 });
-  //   }
-
-  //   const rates = await response.json();
-
-  //   // Map API response to Shopify format
-  //   const formattedRates = rates.map((rate) => ({
-  //     service_name: rate.name,
-  //     service_code: rate.code,
-  //     total_price: rate.price * 100, // Convert to cents
-  //     currency: "USD",
-  //     min_delivery_date: rate.estimated_min,
-  //     max_delivery_date: rate.estimated_max,
-  //   }));
 
   const rates = [
     {

@@ -43,7 +43,6 @@ export default function Index() {
   const { shopDomain } = useLoaderData<typeof loader>();
   const [apiKey, setApiKey] = useState<string>("");
   const [webhook, setWebhook] = useState<string>("");
-  const [webhookUrl, setWebhookUrl] = useState<string>("");
 
   const saveCredentials = async () => {
     try {
@@ -78,7 +77,6 @@ export default function Index() {
     });
     setApiKey(credentials.data.details.api_key ?? "");
     setWebhook(credentials.data.details.webhook_secret ?? "");
-    setWebhookUrl(credentials.data.details.webhook_url ?? "");
   };
 
   const createCarrierService = async () => {
@@ -131,14 +129,6 @@ export default function Index() {
                         label="Web-Hook secret"
                         onChange={(value) => setWebhook(value)}
                         autoComplete="off"
-                      />
-                      <TextField
-                        value={webhookUrl}
-                        type="text"
-                        label="Webhook Url"
-                        onChange={(value) => setWebhookUrl(value)}
-                        autoComplete="off"
-                        disabled={true}
                       />
                       <Button loading={false} submit={true}>
                         Save Credentials
