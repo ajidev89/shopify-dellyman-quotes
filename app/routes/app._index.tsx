@@ -40,12 +40,14 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default function Index() {
   const shopify = useAppBridge();
+  const [loading, setLoading] = useState(false);
   const { shopDomain } = useLoaderData<typeof loader>();
   const [apiKey, setApiKey] = useState<string>("");
   const [webhook, setWebhook] = useState<string>("");
 
   const saveCredentials = async () => {
     try {
+      setLoading(true);
       await axios.post(
         "/api/save-credentials",
         {
@@ -68,6 +70,8 @@ export default function Index() {
       });
     } catch (error: any) {
       console.error(error.response?.data || error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -130,7 +134,7 @@ export default function Index() {
                         onChange={(value) => setWebhook(value)}
                         autoComplete="off"
                       />
-                      <Button loading={false} submit={true}>
+                      <Button loading={loading} submit={true}>
                         Save Credentials
                       </Button>
                     </FormLayout>
